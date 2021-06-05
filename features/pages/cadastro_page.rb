@@ -3,6 +3,7 @@ class CadastroPage < SitePrism::Page
     element :email_create_account_field, '#email_create'
     element :create_account_btn, '#SubmitCreate'
     element :title_fem_rd, '#id_gender2'
+    element :title_masc_rd, '#id_gender1'
     element :first_name_field, '#customer_firstname'
     element :last_name_field, '#customer_lastname'
     element :password_field, '#passwd'
@@ -70,6 +71,30 @@ class CadastroPage < SitePrism::Page
         mobile_phone_field.set Faker::PhoneNumber.cell_phone_in_e164
         address_alias_field.set 'Casa'
     end
+
+    def preencher_form_com_dados_de_exemplos (gender, first_name, last_name, password, day, month, year, newsletter, address, city, zipcode, state, phone, address_name)
+        gender.eql?('fem') ? title_fem_rd.set(true) : title_masc_rd.set(true)
+        @@first_name = first_name
+        first_name_field.set @@first_name
+        @@last_name = last_name
+        last_name_field.set @@last_name
+        password_field.set password
+        day_select.select day
+        month_select.select month
+        year_select.select year
+        unless newsletter.eql?('no')
+            newsletter_checkbox.click
+        end
+        address_field.set address
+        city_field.set city
+        state_select.click
+        option = state_options.find {|option| option.text.include? (state)}
+        option.click
+        zip_code_field.set zipcode
+        mobile_phone_field.set phone
+        address_alias_field.set address_name
+    end
+
 
     def confirmar_cadastro
         register_btn.click
