@@ -5,10 +5,11 @@ Como um cliente da loja online
 Quero cadastrar uma conta
 Para efetuar compras
 
-@cadastro_dados_fixos
-Cenário: Cadastrar cliente com dados válidos fixos
+@cadastro_datafile
+Cenário: Cadastrar cliente com dados válidos de arquivo externo
 Dado que acesso a página de login/cadastro
-E solicito um novo cadastro para o email 'lilian9@gmail.com'
-E preencho os campos do formulário com dados válidos fixos
+E solicito um novo cadastro para o email 'padrão'
+E preencho os campos do formulário com dados válidos padrão
 Quando confirmo o cadastro
 Então devo ser direcionado à página de minha conta
+

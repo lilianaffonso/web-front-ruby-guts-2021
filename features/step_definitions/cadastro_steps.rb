@@ -21,7 +21,11 @@ end
 Dado('preencho os campos do formulário com {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}') do |gender, first_name, last_name, password, day, month, year, newsletter, address, city, zipcode, state, phone, address_name|
     @app.Cadastropage.preencher_form_com_dados_de_exemplos(gender, first_name, last_name, password, day, month, year, newsletter, address, city, zipcode, state, phone, address_name)
 end
-  
+
+Dado ('preencho os campos do formulário com dados válidos padrão') do
+    @app.Cadastropage.preencher_form_com_dados_datafile
+end
+
 Então('devo ser direcionado à página de minha conta') do
     #expect(@app.MinhaContapage.acessou_minha_conta). to be_truthy
     expect(@app.MinhaContapage.page_title.text).to eql('MY ACCOUNT')
